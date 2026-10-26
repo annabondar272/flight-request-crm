@@ -29,4 +29,10 @@ These are the spec, not missing features:
 
 `project-memory/index.html` is the project's activity log, written in Hebrew. After every task that changes something, add a new `<li class="entry">` at the top of `ol.log`, following the template comment in the file. Each entry has a title, a type tag (`feature`/`setup`/`infra`/`docs`), the date and the commit hash when known, plus a few short factual bullets. Update the overview card when project facts change. Read it at the start of a session to see what has happened so far.
 
-A local Stop hook (`.claude/settings.local.json` → `.claude/hooks/auto-sync.sh`) commits every change and pushes it to `origin` at the end of each turn, so you don't need to commit by hand.
+## Auto-sync to GitHub
+
+A Stop hook in `.claude/settings.local.json` runs `.claude/hooks/auto-sync.sh` at the end of every turn. If the tree is dirty, the script runs `git add -A`, makes a commit named `Auto-sync: <date time>`, and runs `git push origin HEAD`.
+- Don't commit by hand unless a meaningful commit message is wanted.
+- The hook commits after the turn ends, so the current log entry can't include its own hash. On the next turn, fill in the previous entry's hash from `git log`.
+- `git add -A` stages everything and the repo is **public**. Keep secrets and local data out of the tree, or add them to `.gitignore` first.
+- `settings.local.json` is gitignored, so a fresh clone has the script but not the hook. To enable it there, recreate the file.
