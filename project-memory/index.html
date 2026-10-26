@@ -121,9 +121,24 @@
 
     <li class="entry">
       <div class="entry-head">
+        <h3>ממשק חלופי בעיצוב Stitch</h3>
+        <span class="tag feature">פיצ'ר</span>
+        <span class="meta">2026-10-26</span>
+      </div>
+      <ul>
+        <li>עיצוב נוצר ב-Stitch (פרויקט <code>9839999312256432239</code>, מערכת עיצוב "AeroDesk Core"): כרטיסי בקשה בסגנון כרטיס עלייה למטוס, ווידג'ט חיפוש טיסות, כפתור החלפה בין מוצא ליעד, ובורר נוסעים 1–9.</li>
+        <li>מומש ב-<code>public/alt.html</code> וב-<code>public/alt.js</code>, עם אותו API. הממשק הקלאסי נשאר ב-<code>/</code>, ויש קישורים בין שני הממשקים.</li>
+        <li>הוסרו מהעיצוב נתונים שאין במערכת (טרמינלים, ברקוד, מספר רשומה, "Non-stop") ורכיבים שנוגדים את הדרישות (סטטוס ומיון).</li>
+        <li>נבדק: כל הדפים מחזירים 200, אין שגיאות בקונסול, ובקשות לדוגמה נוצרו (201). צילום מסך מהדפדפן נכשל (timeout), ולכן הבדיקה החזותית נעשתה ידנית.</li>
+        <li>סקירת אבטחה: ראה רשומה בהמשך.</li>
+      </ul>
+    </li>
+
+    <li class="entry">
+      <div class="entry-head">
         <h3>ענף פיתוח dev</h3>
         <span class="tag setup">הקמה</span>
-        <span class="meta">2026-10-26</span>
+        <span class="meta">2026-10-26 · <code>313af2e</code></span>
       </div>
       <ul>
         <li>נוצר הענף <code>dev</code> מ-<code>a573e82</code> ונדחף ל-GitHub עם מעקב אחרי <code>origin/dev</code>.</li>
