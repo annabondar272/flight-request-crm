@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>יומן פעולות הפרויקט</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-800 antialiased">
+  <main class="max-w-3xl mx-auto px-4 py-10">
+    <header class="mb-8">
+      <h1 class="text-2xl font-bold">יומן פעולות – Flight Request CRM</h1>
+      <p class="text-sm text-slate-500 mt-1">
+        הזיכרון המשני של הפרויקט: תיעוד של כל פעולה שבוצעה, מהחדשה לישנה.
+        <a class="text-sky-700 underline" href="https://github.com/annabondar272/flight-request-crm">הריפו ב-GitHub</a>
+      </p>
+    </header>
+
+    <!-- New entries go at the top of this list. Copy an <article> block. -->
+    <section id="log" class="space-y-4">
+
+      <article class="bg-white rounded-xl border border-slate-200 p-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <h2 class="font-semibold">יצירת יומן פעולות ו-hook לסנכרון אוטומטי</h2>
+          <time class="text-xs text-slate-500" datetime="2026-10-26">2026-10-26</time>
+        </div>
+        <ul class="list-disc pr-5 text-sm space-y-1 text-slate-700">
+          <li>נוצרה התיקייה <code>project-memory/</code> עם הקובץ הזה כיומן פעולות.</li>
+          <li>נוסף Stop hook מקומי (<code>.claude/settings.local.json</code>) שמריץ את <code>.claude/hooks/auto-sync.sh</code>: בסוף כל פעולה הוא עושה commit לכל השינויים ודוחף ל-GitHub.</li>
+          <li>ב-<code>CLAUDE.md</code> נוספה הוראה לעדכן את היומן בסוף כל משימה.</li>
+        </ul>
+      </article>
+
+      <article class="bg-white rounded-xl border border-slate-200 p-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <h2 class="font-semibold">הוספת CLAUDE.md</h2>
+          <time class="text-xs text-slate-500" datetime="2026-10-26">2026-10-26</time>
+        </div>
+        <ul class="list-disc pr-5 text-sm space-y-1 text-slate-700">
+          <li>נוצר <code>CLAUDE.md</code> עם פקודות, ארכיטקטורה ומגבלות המוצר המכוונות.</li>
+          <li>Commit <code>d421e6f</code> נדחף ל-GitHub.</li>
+        </ul>
+      </article>
+
+      <article class="bg-white rounded-xl border border-slate-200 p-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <h2 class="font-semibold">יצירת ריפו Git ו-GitHub</h2>
+          <time class="text-xs text-slate-500" datetime="2026-10-26">2026-10-26</time>
+        </div>
+        <ul class="list-disc pr-5 text-sm space-y-1 text-slate-700">
+          <li>אתחול Git על ענף <code>main</code> והוספת <code>.gitignore</code> (מחריג את <code>node_modules/</code> ואת <code>.env</code>).</li>
+          <li>נוצר ריפו ציבורי <code>annabondar272/flight-request-crm</code>, ו-commit <code>fa187bc</code> נדחף.</li>
+        </ul>
+      </article>
+
+      <article class="bg-white rounded-xl border border-slate-200 p-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <h2 class="font-semibold">התקנת Node.js והרצת האפליקציה</h2>
+          <time class="text-xs text-slate-500" datetime="2026-10-26">2026-10-26</time>
+        </div>
+        <ul class="list-disc pr-5 text-sm space-y-1 text-slate-700">
+          <li>הותקן Node.js 24.22.1 LTS דרך winget, ולאחר מכן <code>npm install</code>.</li>
+          <li>השרת עלה ב-<code>http://localhost:3000</code>. נבדקו: יצירה תקינה (201), קלט שגוי (400), רשימה (200), ו-PUT/DELETE (404).</li>
+        </ul>
+      </article>
+
+      <article class="bg-white rounded-xl border border-slate-200 p-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <h2 class="font-semibold">בניית ה-CRM</h2>
+          <time class="text-xs text-slate-500" datetime="2026-10-26">2026-10-26</time>
+        </div>
+        <ul class="list-disc pr-5 text-sm space-y-1 text-slate-700">
+          <li>שרת Express (<code>server.js</code>) עם אחסון בזיכרון ו-API של <code>GET</code>/<code>POST /api/requests</code> בלבד.</li>
+          <li>ממשק ב-Tailwind ו-JavaScript רגיל (<code>public/</code>): טופס בקשת טיסה ורשימת בקשות לצפייה בלבד.</li>
+          <li>אין התחברות, אין עריכה או מחיקה, ואין חיפוש או סינון, בהתאם לדרישות.</li>
+        </ul>
+      </article>
+
+    </section>
+  </main>
+</body>
+</html>

@@ -24,3 +24,9 @@ These are the spec, not missing features:
 - No authentication or user management.
 - Requests are immutable: no edit or delete. Stored objects are `Object.freeze`d, and there are no PUT, PATCH or DELETE routes.
 - The list has no search, filters or status tracking.
+
+## Activity log (project memory)
+
+`project-memory/index.html` is the project's activity log, written in Hebrew. After every task that changes something, add a new `<article>` entry at the top of `#log`: a title, the date, and bullet points saying what was done and why, including commit hashes when relevant. Read it at the start of a session to see what has happened so far.
+
+A local Stop hook (`.claude/settings.local.json` → `.claude/hooks/auto-sync.sh`) commits every change and pushes it to `origin` at the end of each turn, so you don't need to commit by hand.
