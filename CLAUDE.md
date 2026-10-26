@@ -18,6 +18,11 @@ An educational CRM for airline booking requests. `server.js` is the whole backen
 - **Frontend**: `public/index.html` (Tailwind via the Play CDN, so there's no Tailwind build or config) and `public/app.js` (vanilla JS). Form input `name` attributes must match the API field names (`customerName`, `phone`, `origin`, `destination`, `departureDate`, `passengers`), because the form is serialized with `Object.fromEntries(new FormData(form))`.
 - **Rendering**: list items are built with `document.createElement` and `textContent` (the `el()` helper) to avoid XSS. Don't switch to `innerHTML` with user data.
 
+## Required workflow
+
+1. **Check outputs after every execution.** After running a command, script or server change, read the actual output before moving on: the exit code, the response bodies and status codes, the files written. Don't report success from the command alone. If the output differs from what was expected, fix the problem or report it as it is.
+2. **Security-review new or changed code.** After writing or modifying code, run the `security-review` skill (`/security-review`) on the changes before finishing the task. Fix real findings, and note in the activity log what was checked and what was found. The auto-sync hook commits at the end of the turn and `security-review` reviews pending changes, so run it **before** the turn ends.
+
 ## Product constraints (intentional; keep them)
 
 These are the spec, not missing features:
