@@ -1,0 +1,12 @@
+{
+  "name": "flight-request-crm",
+  "version": "1.0.0",
+  "description": "Educational CRM for airline ticket booking requests (in-memory, view-only).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
