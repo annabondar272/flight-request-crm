@@ -34,9 +34,15 @@ These are the spec, not missing features:
 
 `project-memory/index.html` is the project's activity log, written in Hebrew. After every task that changes something, add a new `<li class="entry">` at the top of `ol.log`, following the template comment in the file. Each entry has a title, a type tag (`feature`/`setup`/`infra`/`docs`), the date and the commit hash when known, plus a few short factual bullets. Update the overview card when project facts change. Read it at the start of a session to see what has happened so far.
 
+## Branches
+
+- `dev` is the development branch. Do all work there.
+- `main` is the stable branch. It changes only when the user asks to merge `dev` into it.
+- Before starting work, confirm with `git branch --show-current` that `dev` is checked out.
+
 ## Auto-sync to GitHub
 
-A Stop hook in `.claude/settings.local.json` runs `.claude/hooks/auto-sync.sh` at the end of every turn. If the tree is dirty, the script runs `git add -A`, makes a commit named `Auto-sync: <date time>`, and runs `git push origin HEAD`.
+A Stop hook in `.claude/settings.local.json` runs `.claude/hooks/auto-sync.sh` at the end of every turn. If the tree is dirty, the script runs `git add -A`, makes a commit named `Auto-sync: <date time>`, and runs `git push origin HEAD`, which pushes the current branch (normally `dev`).
 - Don't commit by hand unless a meaningful commit message is wanted.
 - The hook commits after the turn ends, so the current log entry can't include its own hash. On the next turn, fill in the previous entry's hash from `git log`.
 - `git add -A` stages everything and the repo is **public**. Keep secrets and local data out of the tree, or add them to `.gitignore` first.
