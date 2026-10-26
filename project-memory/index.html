@@ -3,80 +3,194 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>יומן פעולות הפרויקט</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>יומן הפרויקט – Flight Request CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #0369a1;
+      --code-bg: #f1f5f9;
+      --tag-feature: #dbeafe; --tag-feature-text: #1e40af;
+      --tag-setup:   #dcfce7; --tag-setup-text:   #166534;
+      --tag-infra:   #fef3c7; --tag-infra-text:   #92400e;
+      --tag-docs:    #f3e8ff; --tag-docs-text:    #6b21a8;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a; --card: #1e293b; --text: #e2e8f0; --muted: #94a3b8;
+        --border: #334155; --accent: #38bdf8; --code-bg: #0f172a;
+        --tag-feature: #1e3a8a; --tag-feature-text: #bfdbfe;
+        --tag-setup:   #14532d; --tag-setup-text:   #bbf7d0;
+        --tag-infra:   #78350f; --tag-infra-text:   #fde68a;
+        --tag-docs:    #581c87; --tag-docs-text:    #e9d5ff;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Heebo", system-ui, sans-serif; font-size: 16px; line-height: 1.7;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
+    h1 { font-size: 1.75rem; margin: 0 0 4px; }
+    h2 { font-size: 1.15rem; margin: 40px 0 12px; }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, Consolas, monospace; font-size: 0.85em;
+      background: var(--code-bg); border: 1px solid var(--border);
+      padding: 1px 5px; border-radius: 4px; direction: ltr; unicode-bidi: embed;
+    }
+    .subtitle { color: var(--muted); margin: 0; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+
+    /* Project overview */
+    .facts { display: grid; grid-template-columns: max-content 1fr; gap: 8px 20px; margin: 0; }
+    .facts dt { color: var(--muted); font-weight: 500; }
+    .facts dd { margin: 0; }
+
+    /* Log timeline */
+    .log { list-style: none; margin: 0; padding: 0; border-right: 2px solid var(--border); }
+    .entry { position: relative; padding: 0 24px 28px 0; }
+    .entry::before {
+      content: ""; position: absolute; right: -7px; top: 8px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--bg);
+    }
+    .entry-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 6px; }
+    .entry h3 { font-size: 1.05rem; margin: 0; }
+    .meta { color: var(--muted); font-size: 0.85rem; }
+    .tag { font-size: 0.75rem; font-weight: 500; padding: 1px 10px; border-radius: 999px; }
+    .tag.feature { background: var(--tag-feature); color: var(--tag-feature-text); }
+    .tag.setup   { background: var(--tag-setup);   color: var(--tag-setup-text); }
+    .tag.infra   { background: var(--tag-infra);   color: var(--tag-infra-text); }
+    .tag.docs    { background: var(--tag-docs);    color: var(--tag-docs-text); }
+    .entry ul { margin: 0; padding-right: 20px; }
+    .entry li { margin-bottom: 2px; }
+
+    @media (max-width: 520px) {
+      .facts { grid-template-columns: 1fr; gap: 0; }
+      .facts dd { margin-bottom: 10px; }
+    }
+  </style>
 </head>
-<body class="min-h-screen bg-slate-100 text-slate-800 antialiased">
-  <main class="max-w-3xl mx-auto px-4 py-10">
-    <header class="mb-8">
-      <h1 class="text-2xl font-bold">יומן פעולות – Flight Request CRM</h1>
-      <p class="text-sm text-slate-500 mt-1">
-        הזיכרון המשני של הפרויקט: תיעוד של כל פעולה שבוצעה, מהחדשה לישנה.
-        <a class="text-sky-700 underline" href="https://github.com/annabondar272/flight-request-crm">הריפו ב-GitHub</a>
-      </p>
-    </header>
+<body>
+<main>
 
-    <!-- New entries go at the top of this list. Copy an <article> block. -->
-    <section id="log" class="space-y-4">
+  <header>
+    <h1>יומן הפרויקט</h1>
+    <p class="subtitle">Flight Request CRM · תיעוד פעולות וזיכרון משני של הפרויקט</p>
+  </header>
 
-      <article class="bg-white rounded-xl border border-slate-200 p-5">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <h2 class="font-semibold">יצירת יומן פעולות ו-hook לסנכרון אוטומטי</h2>
-          <time class="text-xs text-slate-500" datetime="2026-10-26">2026-10-26</time>
-        </div>
-        <ul class="list-disc pr-5 text-sm space-y-1 text-slate-700">
-          <li>נוצרה התיקייה <code>project-memory/</code> עם הקובץ הזה כיומן פעולות.</li>
-          <li>נוסף Stop hook מקומי (<code>.claude/settings.local.json</code>) שמריץ את <code>.claude/hooks/auto-sync.sh</code>: בסוף כל פעולה הוא עושה commit לכל השינויים ודוחף ל-GitHub.</li>
-          <li>ב-<code>CLAUDE.md</code> נוספה הוראה לעדכן את היומן בסוף כל משימה.</li>
-        </ul>
-      </article>
+  <h2>סקירה</h2>
+  <section class="card">
+    <dl class="facts">
+      <dt>מטרה</dt>
+      <dd>CRM לימודי לרישום בקשות להזמנת כרטיסי טיסה</dd>
+      <dt>טכנולוגיה</dt>
+      <dd>Node.js + Express, Tailwind (CDN), JavaScript רגיל</dd>
+      <dt>הרצה</dt>
+      <dd><code>npm install</code> ואז <code>npm start</code>, בכתובת <code>http://localhost:3000</code></dd>
+      <dt>ריפו</dt>
+      <dd><a href="https://github.com/annabondar272/flight-request-crm">annabondar272/flight-request-crm</a> (ציבורי)</dd>
+      <dt>מגבלות</dt>
+      <dd>אחסון בזיכרון בלבד, ללא התחברות, ללא עריכה או מחיקה, ללא חיפוש או סינון</dd>
+      <dt>סנכרון</dt>
+      <dd>commit ו-push אוטומטיים בסוף כל פעולה (Stop hook מקומי)</dd>
+    </dl>
+  </section>
 
-      <article class="bg-white rounded-xl border border-slate-200 p-5">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <h2 class="font-semibold">הוספת CLAUDE.md</h2>
-          <time class="text-xs text-slate-500" datetime="2026-10-26">2026-10-26</time>
-        </div>
-        <ul class="list-disc pr-5 text-sm space-y-1 text-slate-700">
-          <li>נוצר <code>CLAUDE.md</code> עם פקודות, ארכיטקטורה ומגבלות המוצר המכוונות.</li>
-          <li>Commit <code>d421e6f</code> נדחף ל-GitHub.</li>
-        </ul>
-      </article>
+  <h2>יומן פעולות</h2>
+  <!--
+    New entries go at the top. Template:
+    <li class="entry">
+      <div class="entry-head">
+        <h3>Title</h3>
+        <span class="tag feature|setup|infra|docs">label</span>
+        <span class="meta">YYYY-MM-DD · <code>hash</code></span>
+      </div>
+      <ul><li>One fact per line.</li></ul>
+    </li>
+  -->
+  <ol class="log">
 
-      <article class="bg-white rounded-xl border border-slate-200 p-5">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <h2 class="font-semibold">יצירת ריפו Git ו-GitHub</h2>
-          <time class="text-xs text-slate-500" datetime="2026-10-26">2026-10-26</time>
-        </div>
-        <ul class="list-disc pr-5 text-sm space-y-1 text-slate-700">
-          <li>אתחול Git על ענף <code>main</code> והוספת <code>.gitignore</code> (מחריג את <code>node_modules/</code> ואת <code>.env</code>).</li>
-          <li>נוצר ריפו ציבורי <code>annabondar272/flight-request-crm</code>, ו-commit <code>fa187bc</code> נדחף.</li>
-        </ul>
-      </article>
+    <li class="entry">
+      <div class="entry-head">
+        <h3>עיצוב מחדש של יומן הפרויקט</h3>
+        <span class="tag docs">תיעוד</span>
+        <span class="meta">2026-10-26</span>
+      </div>
+      <ul>
+        <li>מבנה של ציר זמן, עם סקירת פרויקט בראש העמוד.</li>
+        <li>תגית סוג לכל רשומה, ותמיכה במצב כהה ובמובייל.</li>
+      </ul>
+    </li>
 
-      <article class="bg-white rounded-xl border border-slate-200 p-5">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <h2 class="font-semibold">התקנת Node.js והרצת האפליקציה</h2>
-          <time class="text-xs text-slate-500" datetime="2026-10-26">2026-10-26</time>
-        </div>
-        <ul class="list-disc pr-5 text-sm space-y-1 text-slate-700">
-          <li>הותקן Node.js 24.22.1 LTS דרך winget, ולאחר מכן <code>npm install</code>.</li>
-          <li>השרת עלה ב-<code>http://localhost:3000</code>. נבדקו: יצירה תקינה (201), קלט שגוי (400), רשימה (200), ו-PUT/DELETE (404).</li>
-        </ul>
-      </article>
+    <li class="entry">
+      <div class="entry-head">
+        <h3>יומן פעולות ו-hook לסנכרון אוטומטי</h3>
+        <span class="tag infra">תשתית</span>
+        <span class="meta">2026-10-26 · <code>599b0b9</code></span>
+      </div>
+      <ul>
+        <li>נוצר <code>project-memory/index.html</code>, היומן הזה.</li>
+        <li>Stop hook ב-<code>.claude/settings.local.json</code> מריץ את <code>.claude/hooks/auto-sync.sh</code>, שעושה commit ו-push.</li>
+        <li>ב-<code>CLAUDE.md</code>: הוראה לעדכן את היומן בסוף כל משימה.</li>
+      </ul>
+    </li>
 
-      <article class="bg-white rounded-xl border border-slate-200 p-5">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <h2 class="font-semibold">בניית ה-CRM</h2>
-          <time class="text-xs text-slate-500" datetime="2026-10-26">2026-10-26</time>
-        </div>
-        <ul class="list-disc pr-5 text-sm space-y-1 text-slate-700">
-          <li>שרת Express (<code>server.js</code>) עם אחסון בזיכרון ו-API של <code>GET</code>/<code>POST /api/requests</code> בלבד.</li>
-          <li>ממשק ב-Tailwind ו-JavaScript רגיל (<code>public/</code>): טופס בקשת טיסה ורשימת בקשות לצפייה בלבד.</li>
-          <li>אין התחברות, אין עריכה או מחיקה, ואין חיפוש או סינון, בהתאם לדרישות.</li>
-        </ul>
-      </article>
+    <li class="entry">
+      <div class="entry-head">
+        <h3>הוספת CLAUDE.md</h3>
+        <span class="tag docs">תיעוד</span>
+        <span class="meta">2026-10-26 · <code>d421e6f</code></span>
+      </div>
+      <ul>
+        <li>פקודות, ארכיטקטורה ומגבלות המוצר, כהנחיות ל-Claude Code.</li>
+      </ul>
+    </li>
 
-    </section>
-  </main>
+    <li class="entry">
+      <div class="entry-head">
+        <h3>ריפו Git ו-GitHub</h3>
+        <span class="tag setup">הקמה</span>
+        <span class="meta">2026-10-26 · <code>fa187bc</code></span>
+      </div>
+      <ul>
+        <li>ענף <code>main</code>, ו-<code>.gitignore</code> שמחריג את <code>node_modules/</code> ואת <code>.env</code>.</li>
+        <li>ריפו ציבורי ב-GitHub.</li>
+      </ul>
+    </li>
+
+    <li class="entry">
+      <div class="entry-head">
+        <h3>התקנת Node.js והרצה</h3>
+        <span class="tag setup">הקמה</span>
+        <span class="meta">2026-10-26</span>
+      </div>
+      <ul>
+        <li>Node.js 24.22.1 LTS הותקן דרך winget.</li>
+        <li>בדיקות API: יצירה (201), קלט שגוי (400), רשימה (200), PUT/DELETE (404).</li>
+      </ul>
+    </li>
+
+    <li class="entry">
+      <div class="entry-head">
+        <h3>בניית ה-CRM</h3>
+        <span class="tag feature">פיצ'ר</span>
+        <span class="meta">2026-10-26</span>
+      </div>
+      <ul>
+        <li><code>server.js</code>: Express, אחסון במערך בזיכרון, ושתי נקודות קצה בלבד: <code>GET</code> ו-<code>POST /api/requests</code>.</li>
+        <li><code>public/</code>: טופס בקשת טיסה ורשימה לצפייה בלבד.</li>
+        <li>אימות בצד השרת: כל השדות חובה, 1–9 נוסעים, תאריך תקין, מוצא שונה מיעד.</li>
+      </ul>
+    </li>
+
+  </ol>
+</main>
 </body>
 </html>
